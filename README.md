@@ -5,44 +5,72 @@ The grammar can be found here: https://drive.google.com/file/d/1ujgcS7GoI-zu56Fx
 
 Jack grammar repeated below for convenience:
 
-LEXICAL ELEMENTS:
+LEXICAL ELEMENTS////////////////////////////////////////////////////////////////////
 Keywords: class, constructor, function, method, 
           field, static, var, int, char, boolean, 
           void, true, false, null, this, let, do,  
           if, else, while, return
+          
 Symbols: {, }, (, ), [, ], ., ',', ;, +, -, *, /, &, |, <, >, =, ~
+
 Integer constants: decimals in range 0...32767
+
 String constants: '"'a sequence of Unicode characters not including double quotes or newline '"'
+
 Identifiers: a sequence of letter, digits and underscores, not starting with a digit
 
-PROGRAM STRUCTURE:
+PROGRAM STRUCTURE///////////////////////////////////////////////////////////////////
+
 Class:          'class' className '{' classVarDec* subroutineDec* '}'
+
 ClassVarDec:    ('static'|'field') type varName(',' varName)*';'
+
 type:           'int'|'char'|'boolean'|className
+
 subroutineDec:  ('constructor'|'function'|'method') ('void'|type) subroutineName '('parameterList')' subroutineBody
+
 parameterList:  ( (type varName) (',' type varName)*)?
+
 subroutineBody: '{'varDec* statements'}'
+
 varDec:         'var' type varName(',' varName)*';'
+
 className:      identifier
+
 subroutineName: identifier
+
 varName:        identifier
 
-STATEMENTS:
+
+STATEMENTS///////////////////////////////////////////////////////////////////////////////////////
+
 statements:     statement*
+
 statement:      letStatement|ifStatement|whileStatement|doStatement|returnStatement
+
 letStatement:   'let' varName('['expression']')?'='expression';'
+
 ifStatement:    'if''('expression')''{'statements'}'
+
 doStatement:    'do' subroutineCall';'
+
 returnStatement:'return' expression?';'
 
 
-EXPRESSIONS:
+EXPRESSIONS//////////////////////////////////////////////////////////////////////////////////////
+
 expression:      term(op term)*
+
 term:            integerConstant|stringConstant|keywordConstant|varName|varName'['expression']'|
                  subroutineCall|'('expression')'|unaryop term
+                 
 subroutineCall:  subroutineName'('expressionList')' | (className|varName)'.'subroutineName'(expressionList')'
+
 expressionList:  (expression(','expression)*)?
+
 op:              '+'|'-'|'*'|'/'|'&'|'|'|'<'|'>'|'='
+
 unaryOp:         '-'|'~'
+
 keywordConstant: 'true'|'false'|'null'|'this'
                  
