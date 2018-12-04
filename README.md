@@ -3,7 +3,8 @@ This project was completed as part of the Nand2Tetris course found here: https:/
 The JackCompiler is a compiler for a simple Java-like language called Jack. 
 The grammar can be found here: https://drive.google.com/file/d/1ujgcS7GoI-zu56FxhfkTAvEgZ6JT7Dxl/view
 
-Jack grammar repeated below for convenience:
+Jack grammar repeated below for convenience. Items followed by an asterisk are repeatable; items followed by a question mark
+are optional
 
 LEXICAL ELEMENTS////////////////////////////////////////////////////////////////////
 Keywords: class, constructor, function, method, 
